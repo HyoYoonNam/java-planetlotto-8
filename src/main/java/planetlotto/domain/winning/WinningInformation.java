@@ -53,14 +53,6 @@ public enum WinningInformation {
         }
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public boolean isBonusMatched() {
-        return bonusMatched;
-    }
-
     public int getPrizeMoney() {
         return prizeMoney;
     }

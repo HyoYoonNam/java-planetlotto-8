@@ -50,9 +50,4 @@ public class PlanetLottoController {
         int amount = InputView.askAmount();
         return lottoMachine.purchase(amount);
     }
-
-//    private Lotto setUpWinningLotto() {
-//        List<Integer> rawWinningLotto = InputView.askWinningLotto();
-//        return Lotto.of(rawWinningLotto);
-//    }
 }
