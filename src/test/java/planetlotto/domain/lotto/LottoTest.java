@@ -44,14 +44,10 @@ class LottoTest {
     @Test
     void 로또_정상_생성() {
         List<Integer> validNumbers = List.of(1, 2, 3, 4, 5);
-        // TODO: LottoTest에서 LottoNumber 로직 불러오는게 맘에 들지는 않지만 일단 이대로 진행
-        List<LottoNumber> expectedLottoNumbers = validNumbers.stream()
-                .map(LottoNumber::from)
-                .toList();
 
         Lotto lotto = Lotto.of(validNumbers);
 
-        assertThat(lotto.getNumbers()).isEqualTo(expectedLottoNumbers);
+        assertThat(lotto.getNumbers()).isEqualTo(validNumbers);
     }
 
     @Test

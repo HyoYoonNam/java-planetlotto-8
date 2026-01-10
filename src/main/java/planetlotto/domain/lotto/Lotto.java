@@ -41,7 +41,13 @@ public class Lotto {
         }
     }
 
-    public List<LottoNumber> getNumbers() {
+    public List<LottoNumber> getLottoNumbers() {
         return List.copyOf(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers.stream()
+                .map(LottoNumber::getNumber)
+                .toList();
     }
 }

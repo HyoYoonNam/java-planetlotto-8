@@ -13,7 +13,7 @@ public class LottoMachine {
         this.numberGenerator = numberGenerator;
     }
 
-    public List<Lotto> purchase(final int purchaseAmount) {
+    public Lottos purchase(final int purchaseAmount) {
         validate(purchaseAmount);
 
         int quantity = purchaseAmount / PRICE_PER_LOTTO;
@@ -38,7 +38,7 @@ public class LottoMachine {
         }
     }
 
-    private List<Lotto> issue(int quantity) {
+    private Lottos issue(int quantity) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < quantity; i++) {
@@ -47,6 +47,6 @@ public class LottoMachine {
             lottos.add(lotto);
         }
 
-        return List.copyOf(lottos);
+        return Lottos.of(lottos);
     }
 }

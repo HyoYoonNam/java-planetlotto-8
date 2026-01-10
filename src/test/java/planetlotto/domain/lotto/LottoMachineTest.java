@@ -41,9 +41,9 @@ class LottoMachineTest {
         FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(List.of(1, 2, 3, 4, 5));
 
         LottoMachine lottoMachine = new LottoMachine(fixedNumberGenerator);
-        List<Lotto> purchased = lottoMachine.purchase(PRICE_PER_LOTTO);
+        Lottos purchased = lottoMachine.purchase(PRICE_PER_LOTTO);
 
-        assertThat(purchased).hasSize(1);
+        assertThat(purchased.toResponse()).hasSize(1);
     }
 
     private static Stream<Arguments> provideUnDivisibleByLottoPrice() {
