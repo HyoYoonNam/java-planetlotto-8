@@ -13,6 +13,14 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
+    public List<Lotto> toList() {
+        return List.copyOf(lottos);
+    }
+
+    public int size() {
+        return lottos.size();
+    }
+
     public List<List<Integer>> toResponse() {
         return lottos.stream()
                 .map(Lotto::getNumbers)

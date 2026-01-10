@@ -26,4 +26,23 @@ public class WinningLotto {
     public static WinningLotto of(Lotto winningLotto, LottoNumber bonusNumber) {
         return new WinningLotto(winningLotto, bonusNumber);
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber.getNumber();
+    }
+
+    public int calculateMatchCount(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .map(LottoNumber::from)
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean isMatchedBonusNumber(Lotto lotto) {
+        return lotto.contains(bonusNumber);
+    }
 }
