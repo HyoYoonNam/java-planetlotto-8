@@ -15,18 +15,6 @@ public class WinningStatisticsCalculator {
     private WinningStatisticsCalculator() {
     }
 
-//    /**
-//     * 당첨 로또와 구매한 로또 목록을 받아 여러 통계량을 계산하여 리턴한다.
-//     */
-//    public static WinningStatisticDto calculate(final WinningLotto winningLotto,
-//                                                final Lottos lottos) {
-//        Map<WinningInformation, Integer> winningMap = calculateWinningInformation(winningLotto, lottos.getLottos());
-//        // TODO: 공통 상수로 모으기
-//        double rateOfReturn = calculateRateOfReturn(winningMap, lottos.size() * 500);
-//
-//        return new WinningStatisticDto(winningMap, rateOfReturn);
-//    }
-
     public static Map<Integer, Integer> calculateWinningInformation(WinningLotto winningLotto,
                                                                     Lottos lottos) {
         Map<WinningInformation, Integer> winningMap = new EnumMap<>(WinningInformation.class);

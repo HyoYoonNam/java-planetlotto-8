@@ -36,6 +36,11 @@ public class PlanetLottoController {
         OutputView.printResult(resultMap);
     }
 
+    private Lottos setUpPurchasedLottos() {
+        int amount = InputView.askAmount();
+        return lottoMachine.purchase(amount);
+    }
+
     private WinningLotto setUpWinningLotto() {
         List<Integer> rawWinningLotto = InputView.askWinningLotto();
         Lotto winningLotto = Lotto.of(rawWinningLotto);
@@ -44,10 +49,5 @@ public class PlanetLottoController {
         LottoNumber bonusNumber = LottoNumber.from(rawBonusNumber);
 
         return WinningLotto.of(winningLotto, bonusNumber);
-    }
-
-    private Lottos setUpPurchasedLottos() {
-        int amount = InputView.askAmount();
-        return lottoMachine.purchase(amount);
     }
 }
