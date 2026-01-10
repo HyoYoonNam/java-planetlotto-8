@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoNumber implements Comparable<LottoNumber> {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 30;
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 30;
     private static final String OUT_OF_RANGED_ERROR_MESSAGE =
             "로또 번호는 " + MIN_NUMBER + "부터 " + MAX_NUMBER + " 사이의 숫자여야 합니다.";
     private static final Map<Integer, LottoNumber> CACHE =

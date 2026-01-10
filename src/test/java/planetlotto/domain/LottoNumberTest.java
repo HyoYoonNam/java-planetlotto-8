@@ -11,8 +11,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoNumberTest {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 30;
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 30;
 
     @ParameterizedTest
     @ValueSource(ints = {
