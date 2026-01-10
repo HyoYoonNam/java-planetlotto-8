@@ -1,4 +1,4 @@
-package planetlotto.domain;
+package planetlotto.domain.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;

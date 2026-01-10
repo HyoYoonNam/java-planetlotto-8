@@ -1,4 +1,4 @@
-package planetlotto.domain;
+package planetlotto.domain.lotto;
 
 import java.util.Map;
 import java.util.function.Function;

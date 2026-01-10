@@ -1,4 +1,4 @@
-package planetlotto.domain;
+package planetlotto.domain.lotto;
 
 import java.util.List;
 import java.util.Set;

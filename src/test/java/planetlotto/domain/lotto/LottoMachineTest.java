@@ -1,4 +1,4 @@
-package planetlotto.domain;
+package planetlotto.domain.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -10,7 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import planetlotto.domain.numbergenerator.FixedNumberGenerator;
-import planetlotto.domain.numbergenerator.RandomNumberGenerator;
 
 class LottoMachineTest {
     private static final int PRICE_PER_LOTTO = 500;
