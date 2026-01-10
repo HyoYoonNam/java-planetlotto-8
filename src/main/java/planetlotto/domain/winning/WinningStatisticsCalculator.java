@@ -39,18 +39,4 @@ public class WinningStatisticsCalculator {
 
         return result;
     }
-
-    private static double calculateRateOfReturn(Map<WinningInformation, Integer> statistics, int totalPurchaseMoney) {
-        int totalPrizeMoney = 0;
-        for (Entry<WinningInformation, Integer> winningInformationIntegerEntry : statistics.entrySet()) {
-            int lottoAmount = winningInformationIntegerEntry.getValue();
-            if (lottoAmount == 0) {
-                continue;
-            }
-
-            totalPrizeMoney += winningInformationIntegerEntry.getKey().getPrizeMoney() * lottoAmount;
-        }
-
-        return ((double) totalPrizeMoney / totalPurchaseMoney) * 100;
-    }
 }

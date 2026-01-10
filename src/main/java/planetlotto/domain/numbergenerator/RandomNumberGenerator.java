@@ -1,6 +1,7 @@
 package planetlotto.domain.numbergenerator;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
 
 public class RandomNumberGenerator implements NumberGenerator {
