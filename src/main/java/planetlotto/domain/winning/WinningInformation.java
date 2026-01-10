@@ -9,15 +9,15 @@ import java.util.Arrays;
  */
 
 public enum WinningInformation {
-    FIVE_MATCHED(1, 5, false, 100_000_000),
-    FOUR_MATCHED_WITH_BONUS(2, 4, true, 10_000_000),
-    FOUR_MATCHED(3, 4, false, 1_500_000),
-    THREE_MATCHED_WITH_BONUS(4, 3, true, 500_000),
-    TWO_MATCHED_WITH_BONUS(5, 2, true, 5_000),
-    EMPTY(0, 0, false, 0),
+    FIVE_MATCHED(1, 5, false, Constants.RANK_1_PRIZE_MONEY),
+    FOUR_MATCHED_WITH_BONUS(2, 4, true, Constants.RANK_2_PRIZE_MONEY),
+    FOUR_MATCHED(3, 4, false, Constants.RANK_3_PRIZE_MONEY),
+    THREE_MATCHED_WITH_BONUS(4, 3, true, Constants.RANK_4_PRIZE_MONEY),
+    TWO_MATCHED_WITH_BONUS(5, 2, true, Constants.RANK_5_PRIZE_MONEY),
+    EMPTY(0, 0, false, Constants.RANK_0_PRIZE_MONEY),
     ;
 
-    private static final int MIN_MATCH_COUNT = 0;
+    private static final int MIN_MATCH_COUNT = Constants.RANK_0_PRIZE_MONEY;
     private static final int MAX_MATCH_COUNT = 5;
 
     private final int rank;
@@ -59,5 +59,14 @@ public enum WinningInformation {
 
     public int toRank() {
         return rank;
+    }
+
+    private static class Constants {
+        private static final int RANK_1_PRIZE_MONEY = 100_000_000;
+        private static final int RANK_2_PRIZE_MONEY = 10_000_000;
+        private static final int RANK_3_PRIZE_MONEY = 1_500_000;
+        private static final int RANK_4_PRIZE_MONEY = 500_000;
+        private static final int RANK_5_PRIZE_MONEY = 5_000;
+        private static final int RANK_0_PRIZE_MONEY = 0;
     }
 }
