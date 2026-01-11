@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import static java.lang.System.lineSeparator;
 
 public class OutputView {
+    // 3주 차때 내 코드는 List<Lotto>를 받았다. 하지만 이는 View가 도메인(Lotto)에 의존하기 때문에 좋지 않다.
     public static void printPurchasedLottos(final List<List<Integer>> lottos) {
         final String header = String.format("%d개를 구매했습니다.", lottos.size());
         final String output = lottos.stream()
