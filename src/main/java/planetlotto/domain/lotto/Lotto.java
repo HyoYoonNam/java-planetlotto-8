@@ -46,11 +46,22 @@ public class Lotto {
         }
     }
 
+    /** 이 로또가 {@code otherLotto}의 로또 번호 중 몇 개를 가지고 있는지 그 수를 반환한다. */
+    public int match(Lotto otherLotto) {
+        // 스트림 최종 연산에서 count()를 해서 바로 리턴해도 되지만, 그 경우 long -> int converting이 요구됨.
+        // 도메인 특성상 형변환에서 오류가 발생할 일은 없으나, 이런 방법도 있다는 것을 연습하기 위해 toList() -> size()를 사용
+        List<LottoNumber> matched = otherLotto.numbers.stream()
+                .filter(this::contains)
+                .toList();
+
+        return matched.size();
+    }
+
     public boolean contains(LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
     }
 
-    public List<LottoNumber> getLottoNumbers() {
+    private List<LottoNumber> getLottoNumbers() {
         return List.copyOf(numbers);
     }
 

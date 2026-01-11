@@ -20,11 +20,9 @@ public class WinningLotto {
         return new WinningLotto(winningLotto, bonusNumber);
     }
 
+    /** {@code lotto}가 당첨 번호(보너스 번호 제외) 중 몇 개를 적중했는지 그 수를 리턴한다. */
     public int calculateMatchCount(Lotto lotto) {
-        return (int) lotto.getNumbers().stream()
-                .map(LottoNumber::from)
-                .filter(winningNumbers::contains)
-                .count();
+        return winningNumbers.match(lotto);
     }
 
     public boolean isMatchedBonusNumber(Lotto lotto) {

@@ -8,7 +8,6 @@ import planetlotto.domain.lotto.LottoNumber;
 import planetlotto.domain.lotto.Lottos;
 import planetlotto.domain.numbergenerator.NumberGenerator;
 import planetlotto.domain.winning.WinningLotto;
-import planetlotto.domain.winning.WinningStatisticsCalculator;
 import planetlotto.util.RetryUtil;
 import planetlotto.view.InputView;
 import planetlotto.view.OutputView;
@@ -31,9 +30,8 @@ public class PlanetLottoController {
                 this::setUpWinningLotto, OutputView::printErrorMessage);
 
         // 당첨 결과 계산 후 출력
-        Map<Integer, Integer> resultMap = WinningStatisticsCalculator.calculateWinningInformation(winningLotto,
-                lottos);
-        OutputView.printResult(resultMap);
+        Map<Integer, Integer> result = lottos.matchAllToResponse(winningLotto);
+        OutputView.printResult(result);
     }
 
     private Lottos setUpPurchasedLottos() {
