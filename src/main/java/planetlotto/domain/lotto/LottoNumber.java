@@ -1,6 +1,7 @@
 package planetlotto.domain.lotto;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -36,6 +37,19 @@ public class LottoNumber implements Comparable<LottoNumber> {
     @Override
     public int compareTo(LottoNumber otherLottoNumber) {
         return Integer.compare(number, otherLottoNumber.number);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof LottoNumber that)) {
+            return false;
+        }
+        return number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(number);
     }
 
     public int getNumber() {
