@@ -27,9 +27,6 @@ public class Lottos {
     // '데이터를 가진 쪽이 일을 처리한다'는 관점에서 보면 Lottos가 계산하는게 타당하다.
     public Map<WinningInformation, Integer> matchAll(WinningLotto winningLotto) {
         Map<WinningInformation, Integer> result = new EnumMap<>(WinningInformation.class);
-        for (WinningInformation winningInfo : WinningInformation.values()) {
-            result.put(winningInfo, 0);
-        }
 
         for (Lotto lotto : lottos) {
             WinningInformation winningInformation = findWinningInformation(winningLotto, lotto);
@@ -41,8 +38,6 @@ public class Lottos {
 
     public Map<Integer, Integer> matchAllToResponse(WinningLotto winningLotto) {
         Map<Integer, Integer> result = new LinkedHashMap<>();
-        Arrays.stream(WinningInformation.values())
-                .forEach(winningInfo -> result.put(winningInfo.toRank(), 0));
 
         for (Lotto lotto : lottos) {
             WinningInformation winningInformation = findWinningInformation(winningLotto, lotto);
