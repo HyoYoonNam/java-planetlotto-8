@@ -2,11 +2,14 @@ package planetlotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import planetlotto.domain.lotto.Lotto;
 import planetlotto.domain.lotto.LottoMachine;
 import planetlotto.domain.lotto.LottoNumber;
 import planetlotto.domain.lotto.Lottos;
 import planetlotto.domain.numbergenerator.NumberGenerator;
+import planetlotto.domain.winning.WinningInformation;
 import planetlotto.domain.winning.WinningLotto;
 import planetlotto.util.RetryUtil;
 import planetlotto.view.InputView;
@@ -30,8 +33,8 @@ public class PlanetLottoController {
                 this::setUpWinningLotto, OutputView::printErrorMessage);
 
         // 당첨 결과 계산 후 출력
-        Map<Integer, Integer> result = lottos.matchAllToResponse(winningLotto);
-        OutputView.printResult(result);
+        Map<WinningInformation, Integer> winningMap = lottos.matchAll(winningLotto);
+        OutputView.printResult(countsByRank(winningMap));
     }
 
     private Lottos setUpPurchasedLottos() {
@@ -47,5 +50,12 @@ public class PlanetLottoController {
         LottoNumber bonusNumber = LottoNumber.from(rawBonusNumber);
 
         return WinningLotto.of(winningLotto, bonusNumber);
+    }
+
+    private Map<Integer, Integer> countsByRank(Map<WinningInformation, Integer> winningMap) {
+        return winningMap.entrySet().stream()
+                .collect(Collectors.toMap(
+                        entry -> entry.getKey().toRank(),
+                        Entry::getValue));
     }
 }

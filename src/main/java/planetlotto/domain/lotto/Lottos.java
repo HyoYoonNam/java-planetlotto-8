@@ -1,10 +1,9 @@
 package planetlotto.domain.lotto;
 
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import planetlotto.domain.winning.WinningInformation;
 import planetlotto.domain.winning.WinningLotto;
 
@@ -23,34 +22,24 @@ public class Lottos {
         return lottos.size();
     }
 
-    // 내 경우에는 Lottos가 당첨을 계산한다는게 '진짜 객체지향이 맞나..?"싶은 어색함이 있었는데,
-    // '데이터를 가진 쪽이 일을 처리한다'는 관점에서 보면 Lottos가 계산하는게 타당하다.
+    // "데이터를 가진 쪽이 프로세스를 처리한다."
+    // Lottos는 구매한 Lotto 목록을 가진다. => 순회 프로세스는 Lottos의 책임
+    // WinningLotto는 당첨 계산에 필요한 당첨 번호 6개와 보너스 번호를 가진다. => 당첨 계산은 WinningLotto의 책임 (Lottos가 WinningLotto에게 위임)
     public Map<WinningInformation, Integer> matchAll(WinningLotto winningLotto) {
-        Map<WinningInformation, Integer> result = new EnumMap<>(WinningInformation.class);
-
-        for (Lotto lotto : lottos) {
-            WinningInformation winningInformation = findWinningInformation(winningLotto, lotto);
-            result.merge(winningInformation, 1, Integer::sum);
-        }
-
-        return result;
-    }
-
-    public Map<Integer, Integer> matchAllToResponse(WinningLotto winningLotto) {
-        Map<Integer, Integer> result = new LinkedHashMap<>();
-
-        for (Lotto lotto : lottos) {
-            WinningInformation winningInformation = findWinningInformation(winningLotto, lotto);
-            result.merge(winningInformation.toRank(), 1, Integer::sum);
-        }
-
-        return result;
-    }
-
-    private WinningInformation findWinningInformation(WinningLotto winningLotto, Lotto lotto) {
-        return WinningInformation.findByMatchCountAndBonusMatched(
-                winningLotto.calculateMatchCount(lotto),
-                winningLotto.isMatchedBonusNumber(lotto));
+        return lottos.stream()
+                .map(winningLotto::calculateWinning)
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        // groupingBy는 Long으로 집계하기 때문에 Integer로 하려면 다음과 같이 처리
+                        Collectors.summingInt(e -> 1)
+                ));
+                /* 아래 방법으로도 가능
+                .collect(Collectors.toMap(
+                        Function.identity(),
+                        winningInfo -> 1,
+                        Integer::sum
+                ));
+                */
     }
 
     public List<List<Integer>> toResponse() {

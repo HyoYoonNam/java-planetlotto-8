@@ -20,12 +20,19 @@ public class WinningLotto {
         return new WinningLotto(winningLotto, bonusNumber);
     }
 
+    public WinningInformation calculateWinning(Lotto lotto) {
+        return WinningInformation.findByMatchCountAndBonusMatched(
+                calculateMatchCount(lotto),
+                isMatchedBonusNumber(lotto)
+        );
+    }
+
     /** {@code lotto}가 당첨 번호(보너스 번호 제외) 중 몇 개를 적중했는지 그 수를 리턴한다. */
-    public int calculateMatchCount(Lotto lotto) {
+    private int calculateMatchCount(Lotto lotto) {
         return winningNumbers.match(lotto);
     }
 
-    public boolean isMatchedBonusNumber(Lotto lotto) {
+    private boolean isMatchedBonusNumber(Lotto lotto) {
         return lotto.contains(bonusNumber);
     }
 }
