@@ -23,6 +23,8 @@ public class Lottos {
         return lottos.size();
     }
 
+    // 내 경우에는 Lottos가 당첨을 계산한다는게 '진짜 객체지향이 맞나..?"싶은 어색함이 있었는데,
+    // '데이터를 가진 쪽이 일을 처리한다'는 관점에서 보면 Lottos가 계산하는게 타당하다.
     public Map<WinningInformation, Integer> matchAll(WinningLotto winningLotto) {
         Map<WinningInformation, Integer> result = new EnumMap<>(WinningInformation.class);
         for (WinningInformation winningInfo : WinningInformation.values()) {
